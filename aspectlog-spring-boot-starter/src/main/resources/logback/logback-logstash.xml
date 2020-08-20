@@ -1,0 +1,12 @@
+<included>
+    <appender name="TcpSocketAppender" class="net.logstash.logback.appender.LogstashTcpSocketAppender">
+        <destination>${elkDestination}</destination>
+        <!-- encoder必须配置,有多种可选 -->
+        <encoder charset="UTF-8" class="net.logstash.logback.encoder.LogstashEncoder">
+            <customFields>{"applicationName":"${applicationName}"}</customFields>
+        </encoder>
+    </appender>
+    <root level="INFO">
+        <appender-ref ref="TcpSocketAppender"/>
+    </root>
+</included>

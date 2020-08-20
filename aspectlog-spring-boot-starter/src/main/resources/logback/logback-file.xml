@@ -1,0 +1,22 @@
+<included>
+    <appender name="FileAppender" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <fileNamePattern>/home/${applicationName}/logs/detail_%d{yyyy-MM-dd}_%i.log</fileNamePattern>
+            <!-- 单个日志文件最多 10MB, 30天的日志周期，最大不能超过2GB -->
+            <maxFileSize>50MB</maxFileSize>
+            <maxHistory>14</maxHistory>
+            <!-- 例如设置为10GB的话，那么到了这个值，就会删除旧的日志 -->
+            <totalSizeCap>10GB</totalSizeCap>
+        </rollingPolicy>
+        <encoder>
+            <pattern>
+                %date{yyyy-MM-dd HH:mm:ss.SSS} [%-5level] [%thread] [%logger{15}] [%X{traceId}] -&#45;&#45; %msg%n
+            </pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+    </appender>
+
+    <root level="INFO">
+        <appender-ref ref="FileAppender"/>
+    </root>
+</included>
